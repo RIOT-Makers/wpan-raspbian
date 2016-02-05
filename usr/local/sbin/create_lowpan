@@ -21,10 +21,14 @@ PANID=$2
 
 # check for wpan0
 ip link show wpan0 1> /dev/null 2>&1
-[ $? == '0' ] && {
+if [[ $? == '0' ]] ; then
     echo ". taking wpan0 down"
     ip link set wpan0 down
-}
+else
+    echo "! no wpan device found, exit!"
+    exit 1
+fi
+
 # check for monitor0
 ip link show monitor0 1> /dev/null 2>&1
 [ $? == '0' ] && {
