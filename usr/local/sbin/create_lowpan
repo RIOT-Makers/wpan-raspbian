@@ -18,15 +18,20 @@ fi
 
 CHANNEL=$1
 PANID=$2
+LLADDR=$3
 
 # check for wpan0
 ip link show wpan0 1> /dev/null 2>&1
 if [[ $? == '0' ]] ; then
     echo ". taking wpan0 down"
-    ip link set wpan0 down
+    ip link set dev wpan0 down
 else
     echo "! no wpan device found, exit!"
     exit 1
+fi
+if [ ! -z "$LLADDR" -a "$LLADDR" != " " ]; then
+    echo ". setting wpan0 LLADDR to $LLADDR"
+    ip link set dev wpan0 address $LLADDR
 fi
 
 # check for monitor0
@@ -49,4 +54,4 @@ iwpan dev wpan0 set pan_id $PANID
 ip link set wpan0 up
 ip link set lowpan0 up
 # no UDP header compression support in RIOT (yet)
-rmmod nhc_udp 1> /dev/null 2>&1
+modprobe -r nhc_udp 1> /dev/null 2>&1

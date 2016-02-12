@@ -1,2 +1,3 @@
 CHN="16"
 PAN="0x23"
+MAC="18:C0:FF:EE:1A:C0:FF:EE" # set to "" if not applicable

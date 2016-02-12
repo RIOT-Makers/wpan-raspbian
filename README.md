@@ -30,10 +30,11 @@ This script will also take down an existing `monitor0` device and will update
 the _channel_ and _pan id_ of `lowpan0` if it already exists. This script is
 used by the systemd lowpan service described below to create a device on startup.
 ```
-# create_lowpan <CHANNEL> <PANID>
+# create_lowpan <CHANNEL> <PANID> [<LLADDR>]
 ```
-
-_Note_: this script will also unload the kernel module for UDP header
+_Note1_: optionally this scripts allows to modify/set the LLADDR of the lowpan
+device, as some devices generate a new LLADDR at each boot.
+_Note2_: this script will also unload the kernel module for UDP header
 compression `nhc_udp`, as this is not supported by the RIOT-OS (yet).
 
 ### Delete lowpan device
@@ -55,7 +56,7 @@ the _channel_ of an existing `monitor0`.
 
 ### Delete monitor device
 
-Delete an existing &LoWPAN monitoring device named `monitor0`.
+Delete an existing 6LoWPAN monitoring device named `monitor0`.
 ```
 # delete_monitor
 ```
@@ -67,9 +68,10 @@ created and configured during the boot process. Raspbian Jessie uses _Systemd_
 to run services, so we want to use that to init a lowpan devices on startup.
 
 The `lowpan.service` file provides a service definition to create `lowpan0`. It
-requires the file `/etc/default/lowpan` to specify _channel_ (`CHN`) and
-_panid_ (`PAN`); Further it uses the scripts `create_lowpan` and `delete_lowpan`
-as described above, so install them as well.
+requires the file `/etc/default/lowpan` to specify _channel_ (`CHN`), _panid_
+(`PAN`), and (optional) the _link layer address_ (`MAC`). Further it uses the
+scripts `create_lowpan` and `delete_lowpan` as described above, so install them
+as well.
 
 To install the service, copy the files
 ```
