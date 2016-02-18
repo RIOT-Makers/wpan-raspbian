@@ -81,6 +81,15 @@ To install the service, copy the files
 ```
 _Note_: modify _channel_ and _panid_ if required in `/etc/default/lowpan`.
 
+## Router Advertisement Daemon (radvd)
+
+The 6LoWPAN standard states that there must be at least one router (6LR) in a
+network answering router solicitations (RS) by responding with router
+advertisements (RA). Typically, a rather _strong_ machine like the Pi would also
+act as the _Authoritative Border Router_  and gateway (6LBR) between LoWPAN and
+_real_ IPv6 networks such as the Internet. A simple way to transform the Pi
+in a 6LBR is to run `radvd`. See our [wiki](https://github.com/RIOT-Makers/wpan-raspbian/wiki/Setup-native-6LoWPAN-router-using-Raspbian)
+for detailed information.
 ----
 
 [Wiki]: https://github.com/RIOT-Makers/wpan-raspbian/wiki/Create-a-generic-Raspbian-image-with-6LoWPAN-support
