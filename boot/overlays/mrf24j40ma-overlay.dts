@@ -16,7 +16,8 @@
                                 reg = <0>;
                                 interrupts = <23 8>;
                                 interrupt-parent = <&gpio>;
-                                reset-gpio = <&gpio 24 0>;
+                                reset-gpio = <&gpio 24 1>;
+                                sleep-gpio = <&gpio 25 1>;
                                 spi-max-frequency = <5000000>;
                         };
 
