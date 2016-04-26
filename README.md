@@ -19,7 +19,7 @@ The following shell scripts are little helper to create and delete lowpan or
 monitor devices. To install the scripts copy them as follows:
 
 ```
-# cp <path/to/repo/clone>/usr/local/sbin/*.sh /usr/local/sbin/.
+# cp <path/to/repo/clone>/usr/local/sbin/* /usr/local/sbin/.
 # chmod +x /usr/local/sbin/*
 ```
 
