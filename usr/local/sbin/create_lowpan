@@ -53,5 +53,3 @@ iwpan phy phy0 set channel 0 $CHANNEL
 iwpan dev wpan0 set pan_id $PANID
 ip link set wpan0 up
 ip link set lowpan0 up
-# no UDP header compression support in RIOT (yet)
-modprobe -r nhc_udp 1> /dev/null 2>&1
