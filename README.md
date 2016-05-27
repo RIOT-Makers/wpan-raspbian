@@ -32,10 +32,8 @@ used by the systemd lowpan service described below to create a device on startup
 ```
 # create_lowpan <CHANNEL> <PANID> [<LLADDR>]
 ```
-_Note1_: optionally this scripts allows to modify/set the LLADDR of the lowpan
+_Note_: optionally this scripts allows to modify/set the LLADDR of the lowpan
 device, as some devices generate a new LLADDR at each boot.
-_Note2_: this script will also unload the kernel module for UDP header
-compression `nhc_udp`, as this is not supported by the RIOT-OS (yet).
 
 ### Delete lowpan device
 
