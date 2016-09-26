@@ -11,6 +11,14 @@ fi
 }
 CHANNEL=$1
 
+# check for lowpan0
+ip link show lowpan0 1> /dev/null 2>&1
+[ $? == '0' ] && {
+    echo ". delete lowpan0"
+    ip link set lowpan0 down
+    ip link del lowpan0 type lowpan
+    sleep 1
+}
 # check for wpan0
 ip link show wpan0 1> /dev/null 2>&1
 if [[ $? == '0' ]] ; then
@@ -20,13 +28,6 @@ else
     echo "! no wpan device found, exit!"
     exit 1
 fi
-# check for lowpan0
-ip link show lowpan0 1> /dev/null 2>&1
-[ $? == '0' ] && {
-    echo ". delete lowpan0"
-    ip link set lowpan0 down
-    ip link del lowpan0 type lowpan
-}
 # check for monitor0
 ip link show monitor0 1> /dev/null 2>&1
 if [[ $? == '0' ]]; then
@@ -35,5 +36,6 @@ if [[ $? == '0' ]]; then
 else
     iwpan phy phy0 interface add monitor%d type monitor
 fi
+# set channel and activate monitor
 iwpan phy phy0 set channel 0 $CHANNEL
 ip link set monitor0 up

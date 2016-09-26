@@ -1,3 +1,6 @@
 CHN="26"
 PAN="0x23"
-MAC="18:C0:FF:EE:1A:C0:FF:EE" # set to "" if not applicable
+# set MAC to "" for random mac/hw address
+MAC="18:C0:FF:EE:1A:C0:FF:EE"
+# set IP6 to "" if not required; note: set a prefix length
+IP6="fdaa:bb:cc:dd::1/64"

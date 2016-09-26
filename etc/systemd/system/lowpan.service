@@ -7,7 +7,7 @@ Conflicts=lowpan_monitor
 EnvironmentFile=/etc/default/lowpan
 Type=oneshot
 User=root
-ExecStart=/usr/local/sbin/create_lowpan $CHN $PAN $MAC
+ExecStart=/usr/local/sbin/create_lowpan $CHN $PAN $MAC $IP6
 ExecStop=/usr/local/sbin/delete_lowpan
 RemainAfterExit=yes
 

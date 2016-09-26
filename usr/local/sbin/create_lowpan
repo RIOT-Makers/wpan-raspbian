@@ -19,6 +19,7 @@ fi
 CHANNEL=$1
 PANID=$2
 LLADDR=$3
+IPADDR=$4
 
 # check for wpan0
 ip link show wpan0 1> /dev/null 2>&1
@@ -49,7 +50,14 @@ else
     echo ". create lowpan0"
     ip link add link wpan0 name lowpan0 type lowpan
 fi
+#set channel and activate device
 iwpan phy phy0 set channel 0 $CHANNEL
 iwpan dev wpan0 set pan_id $PANID
 ip link set wpan0 up
 ip link set lowpan0 up
+# add IPv6 address
+if [ ! -z "$IPADDR" -a "$IPADDR" != " " ]; then
+    sleep 1
+    echo ". adding IPv6 address $IPADDR to lowpan0"
+    ip addr add $IPADDR dev lowpan0
+fi
