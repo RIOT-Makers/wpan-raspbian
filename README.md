@@ -74,7 +74,7 @@ as well.
 To install the service, copy the files
 ```
 # cp <path/to/repo/clone>/etc/default/lowpan /etc/default/.
-# cp <path/to/repo/clone>/etc/systemd/lowpan.service /etc/systemd/system/.
+# cp <path/to/repo/clone>/etc/systemd/system/lowpan.service /etc/systemd/system/.
 # systemctl enable lowpan.service
 ```
 _Note_: modify _channel_ and _panid_ if required in `/etc/default/lowpan`.
