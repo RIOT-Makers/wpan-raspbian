@@ -4,3 +4,5 @@ PAN="0x23"
 MAC="18:C0:FF:EE:1A:C0:FF:EE"
 # set IP6 to "" if not required; note: set a prefix length
 IP6="fdaa:bb:cc:dd::1/64"
+# Set ack requests (Only enable if all devices on your PAN support acks)
+ACKREQ=0

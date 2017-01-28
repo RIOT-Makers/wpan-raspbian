@@ -20,6 +20,7 @@ CHANNEL=$1
 PANID=$2
 LLADDR=$3
 IPADDR=$4
+ACKREQ=$5
 
 # check for wpan0
 ip link show wpan0 1> /dev/null 2>&1
@@ -52,6 +53,7 @@ else
 fi
 #set channel and activate device
 iwpan phy phy0 set channel 0 $CHANNEL
+iwpan dev wpan0 set ackreq_default $ACKREQ
 iwpan dev wpan0 set pan_id $PANID
 ip link set wpan0 up
 ip link set lowpan0 up
