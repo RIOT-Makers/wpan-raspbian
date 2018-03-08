@@ -3,6 +3,12 @@ PAN="0x23"
 # set MAC to "" for random mac/hw address
 MAC="18:C0:FF:EE:1A:C0:FF:EE"
 # set IP6 to "" if not required; note: set a prefix length
-IP6="fdaa:bb:cc:dd::1/64"
+#IP6="fdaa:bb:cc:dd::1/64"
+IP6="fe18:a:b:2::1/64"
 # Set ack requests (Only enable if all devices on your PAN support acks)
 ACKREQ=0
+
+# Setting up IP and Route at specified Interface
+INTERFACE=wlan0
+ADD_IPv6="fe18:a:b:1::1/64"
+ROUTE_PREFIX="fe18:a:b:2::/64"
