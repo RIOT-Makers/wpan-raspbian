@@ -1,0 +1,37 @@
+#!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+  echo "You must be a root user" 2>&1
+  exit 1
+fi
+
+[ -z "$1" ] && {
+  echo "Missing network Interface!"
+  echo "USAGE: $0 <INTERFACE> <add IPv6> <route Prefix>"
+  exit 1
+}
+
+[ -z "$2" ] && {
+  echo "Missing IPv6 to delete from interface!"
+  echo "USAGE: $0 <INTERFACE> <add IPv6> <route Prefix>"
+  exit 1
+}
+[ -z "$3" ] && {
+  echo "Missing network prefix to remove as route from interface!"
+  echo "USAGE: $0 <INTERFACE> <IPv6> <route Prefix>"
+  exit 1
+}
+
+INTERFACE=$1
+IP=$2
+PREFIX=$2
+
+# check for interface
+ip link show $INTERFACE 1> /dev/null 2>&1
+if [[ $? == '0' ]] ; then
+    echo ". Delete ip $IP and route $PREFIX from network interface $INTERFACE."
+    ifconfig $INTERFACE del $IP
+    ip route del $PREFIX dev $INTERFACE
+else
+    echo "! no network interface device found, exit!"
+    exit 1
+fi

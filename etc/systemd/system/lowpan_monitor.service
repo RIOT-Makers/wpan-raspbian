@@ -1,7 +1,7 @@
 [Unit]
 Description=Create lowpan (IEEE802.15.4) monitor device
 After=network.target
-Conflicts=lowpan
+Conflicts=lowpan lowpan_route
 
 [Service]
 EnvironmentFile=/etc/default/lowpan_monitor
